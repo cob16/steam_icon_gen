@@ -35,7 +35,7 @@
             <div class="well">
                 <a id='share_url' href="{{ request.build_absolute_uri }}">{{ request.build_absolute_uri }}</a>
             </div>
-            <button  class="btn btn-default">
+            <button onclick="copyToClipboard('#share_url')" class="btn btn-default">
                 <i class="glyphicon glyphicon-copy"></i>
                 Copy share url
             </button>
