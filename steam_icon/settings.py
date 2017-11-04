@@ -19,8 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '+4pk-xl37+r9gcxf81uz_k!cbs4!0gt2)soyr
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'cormacbrady.info']
-
+ALLOWED_HOSTS = ['localhost', 'pythonanywhere.com']
 
 # Application definition
 
