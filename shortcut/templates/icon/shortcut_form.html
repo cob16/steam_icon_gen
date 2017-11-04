@@ -1,0 +1,61 @@
+{% extends 'icon/layout.html' %}
+{% load bootstrap3 %}
+
+{% block form %}
+    <div class="col-md-6">
+        <h3>Shortcut info</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <p>You can find your games app id at <a  target="_blank" href="https://steamdb.info/search/">steamdb.info/search</a></p>
+                <form action="" method="get">
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">
+                            {% bootstrap_icon "star" %} Generate
+                        </button>
+                    {% endbuttons %}
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    {% if shortcut_html %}
+        <div class="col-md-6 offset-col-md-4">
+            <h3>Shortcut file contents</h3>
+            <p>Make a file on your desktop with the following contents:</p>
+
+            <pre id="shortcut_contents">{{ shortcut_html }}</pre>
+            <button onclick="copyToClipboard('#shortcut_contents')" class="btn btn-primary">
+                <i class="glyphicon glyphicon-copy"></i>
+                Copy to clipboard
+            </button>
+
+            <h3>Share url</h3>
+            <div class="well">
+                <a id='share_url' href="{{ request.build_absolute_uri }}">{{ request.build_absolute_uri }}</a>
+            </div>
+            <button  class="btn btn-default">
+                <i class="glyphicon glyphicon-copy"></i>
+                Copy share url
+            </button>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block js %}
+    {% if shortcut_html %}
+        <script>
+            function copyToClipboard(element) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($(element).text()).select();
+                document.execCommand("copy");
+                $temp.remove();
+            }
+        </script>
+    {% endif %}
+{% endblock %}
+

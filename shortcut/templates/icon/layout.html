@@ -1,0 +1,44 @@
+{% load bootstrap3 %}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% bootstrap_css %}
+</head>
+<body>
+<div class="page-header">
+    <div class="container">
+        <h1><a href="{% url 'MakeShortcut' %}">Steam Linux Shortcut Maker</a></h1>
+    </div>
+</div>
+<div class="content container">
+    <div class="row">
+        {% block form %}
+        {% endblock %}
+    </div>
+
+    <div class="row">
+        <h2>About</h2>
+        <p>Valve have left the steam create shortcut from desktop button broken on linux for:
+            <strong id="numofdays">JS DISABLED days</strong> days <a href="https://github.com/ValveSoftware/steam-for-linux/issues/5012">since June 7 2017</a>.
+        </p>
+        <p>
+            This site was made out of frustration of that issue.
+        </p>
+    </div>
+</div>
+<footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    <script>
+        function daysSinceBug() {
+            return Math.round((new Date() - new Date(2017, 5, 7, 0, 0, 0, 0) ) / (1000 * 60 * 60 * 24))
+        }
+
+        document.getElementById("numofdays").innerHTML = daysSinceBug().toString();
+    </script>
+    {% block js %}
+    {% endblock %}
+</footer>
+</body>
+</html>
